@@ -11,12 +11,6 @@ const data = JSON.parse(students)
 
 // generate uniquw id
 
-const generateId = () => {
-
-    const id = data[data.length - 1].id + 1
-  
-    return id
-  }
 // Get all Students
 
 const getALlStudents = (req, res) => {
