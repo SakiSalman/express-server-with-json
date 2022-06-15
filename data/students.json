@@ -1,4 +1,1 @@
-[
-
-    {"id":1,"name":"imran","age":29},{"id":2,"name":"imran","age":29},{"id":3,"name":"sakib","age":"29","skill":"MERN STACK"}
-]
+[{"id":1,"name":"sakib ali","age":"29","skill":"MERN STACK"},{"id":3,"name":"sakib","age":"29","skill":"MERN STACK"}]
