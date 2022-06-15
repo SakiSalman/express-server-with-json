@@ -59,25 +59,43 @@ const createStudents = (req, res) => {
 
 const updateStudents = (req, res) => {
 
-    res.json({
-        message: 'Singel done'
-    })
+    const {name, age, skill} = req.body
+
+    const id = req.params.id
+
+    const update_data = data.findIndex(data => data.id == id)
+
+    data[update_data] = {
+        id : id,
+        name : name,
+        age : age,
+        skill :skill
+    }
+
+    fs.writeFileSync(path.join(__dirname, '../data/students.json'), JSON.stringify(data))
+   
+    res.json(data)
+
 }
 // delete Students
 
 const deleteStudents = (req, res) => {
 
-    res.json({
-        message: 'Singel done'
-    })
+    const id = req.params.id
+
+   const delated_data = data.filter(data => data.id != id)
+
+
+   fs.writeFileSync(path.join(__dirname, '../data/students.json'), JSON.stringify(delated_data))
+
+    res.json(data)
+
+
 }
 
 
 
-
-
-
-
+// e xports controllers
 module.exports = {
     getALlStudents,
     getSingelStudents,
