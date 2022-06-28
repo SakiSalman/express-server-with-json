@@ -104,6 +104,7 @@
     "mimic-response": "^1.0.1",
     "minimatch": "^3.1.2",
     "minimist": "^1.2.6",
+    "mongoose": "^6.4.0",
     "ms": "^2.0.0",
     "negotiator": "^0.6.3",
     "nodemon": "^2.0.16",

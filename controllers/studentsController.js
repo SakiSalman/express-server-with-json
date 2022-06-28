@@ -1,6 +1,7 @@
 
 const fs = require('fs')
 const path  = require('path')
+const student = require('../models/studentsModel')
 
 
 // Data modeling
@@ -19,7 +20,9 @@ const generateId = () => {
   }
 // Get all Students
 
-const getALlStudents = (req, res) => {
+const getALlStudents = async (req, res) => {
+
+    let data = await student.find()
 
     res.status(200).json(data)
 }
@@ -28,28 +31,26 @@ const getALlStudents = (req, res) => {
 
 // Get singel Students
 
-const getSingelStudents = (req, res) => {
+const getSingelStudents = async (req, res) => {
 
     const id = req.params.id
 
-    const singel_data = data.find(data => data.id == id)
+    const singel_data = await student.findById(id)
 
     res.status(200).json(singel_data)
 }
 // create Students
 
-const createStudents = (req, res) => {
+const createStudents = async (req, res) => {
 
     const {name, age, skill} = req.body
 
-    data.push({
-        id : generateId(),
-        name : name,
-        age : age,
-        skill : skill
+    let data = await student.create({
+        name,
+        age,
+        skill
     })
 
-    fs.writeFileSync(path.join(__dirname, '../data/students.json'), JSON.stringify(data))
 
     res.status(200).json(data)
     
@@ -57,38 +58,31 @@ const createStudents = (req, res) => {
 
 // update Students
 
-const updateStudents = (req, res) => {
+const updateStudents = async (req, res) => {
 
-    const {name, age, skill} = req.body
 
     const id = req.params.id
 
-    const update_data = data.findIndex(data => data.id == id)
-
-    data[update_data] = {
-        id : id,
-        name : name,
-        age : age,
-        skill :skill
-    }
-
-    fs.writeFileSync(path.join(__dirname, '../data/students.json'), JSON.stringify(data))
-   
-    res.json(data)
+    let data = await student.findByIdAndUpdate(id, req.body, {
+        new : true
+    })
+    
+    res.status(200).json({
+        message :` ${data.name}'s Data is updated successfully`
+    })
 
 }
 // delete Students
 
-const deleteStudents = (req, res) => {
+const deleteStudents = async (req, res) => {
 
     const id = req.params.id
 
-   const delated_data = data.filter(data => data.id != id)
+   await student.findByIdAndDelete(id)
 
-
-   fs.writeFileSync(path.join(__dirname, '../data/students.json'), JSON.stringify(delated_data))
-
-    res.json(data)
+   res.status(200).json({
+    message :` ${data.name}'s Data is updated successfully`
+    })
 
 
 }

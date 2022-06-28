@@ -1,8 +1,16 @@
 const express = require('express')
 const colors = require('colors')
 const { url } = require('inspector')
+const connectMongoDB = require('./config/db')
 const dotenv = require('dotenv').config()
 const app = express()
+
+
+
+// MongoDB Initrialization
+
+connectMongoDB();
+
 
 
 // Init port from env
