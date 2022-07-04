@@ -43,13 +43,9 @@ const getSingelStudents = async (req, res) => {
 
 const createStudents = async (req, res) => {
 
-    const {name, age, skill} = req.body
 
-    let data = await student.create({
-        name,
-        age,
-        skill
-    })
+
+    let data = await student.create(req.body)
 
 
     res.status(200).json(data)

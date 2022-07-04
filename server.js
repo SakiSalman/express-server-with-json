@@ -25,6 +25,7 @@ app.use(express.urlencoded({
 
 // create server
 app.use('/api/students', require('./routes/student'))
+app.use('/api/admins', require('./routes/admin'))
 
 
 // router listen
